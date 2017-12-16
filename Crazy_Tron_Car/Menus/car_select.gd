@@ -21,7 +21,7 @@ func _load_scene(car):
 
 
 func _on_van_1_pressed():
-	_load_scene("res://Coches/car_base.scn")
+	_load_scene("res://Coches/Coche.002flago/flago.scn")
 
 
 func _on_van_2_pressed():
