@@ -1,7 +1,7 @@
 
 extends Control
 
-# Member variables
+# Member variables car
 var town = null
 
 
@@ -13,9 +13,9 @@ func _back():
 func _load_scene(car):
 	var tt = load(car).instance()
 	tt.set_name("car")
-	town = load("res://Pistas/truck_scene.scn").instance()
-	town.get_node("instance_pos").add_child(tt)
-	town.get_node("back").connect("pressed", self, "_back")
+	town = load("res://Pistas/circuito_platano/terreno.tscn").instance()
+	town.get_node("PosicionSalida").add_child(tt)
+	#town.get_node("back").connect("pressed", self, "_back")
 	get_parent().add_child(town)
 	hide()
 
@@ -29,4 +29,4 @@ func _on_van_2_pressed():
 
 
 func _on_van_3_pressed():
-	_load_scene("res://Coches/crane.scn")
+	_load_scene("res://Coches/coche_platano/coche_platano.scn")

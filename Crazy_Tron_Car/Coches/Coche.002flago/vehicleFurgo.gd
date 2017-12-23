@@ -1,7 +1,7 @@
 
 extends VehicleBody
 
-# Member variables
+# Member variables car
 const STEER_SPEED = 1
 const STEER_LIMIT = 0.4
 
@@ -16,7 +16,7 @@ var veloRef = 1
 onready var imprimeVelo = get_owner().get_node("HubFlafo/Velocidad")
 onready var imprimeAngu = get_owner().get_node("HubFlafo/Angulo")
 onready var auja = get_owner().get_node("HubFlafo/Panel")
-onready var imprimeVeloLed = get_owner().get_node("HubFlafo/Velo150led")
+#onready var imprimeVeloLed = get_owner().get_node("HubFlafo/Velo150led")
 onready var imprimePuntos = get_owner().get_node("HubFlafo/Puntos")
 
 var banderaPuntos10 = false
@@ -29,18 +29,17 @@ func _fixed_process(delta):
 	velo = 5*(get_linear_velocity().length())
 	imprimeVelo.set_text(str(int(velo))+" Km/h")
 	
+	# parte de pruebas
 	veloRef = (get_linear_velocity().length())
 	imprimeAngu.set_text(str(velo/150)+" grados a 150")
-	imprimeVeloLed.set_text(str(int(velo)))
-	#rotación
+	
+	# Pantalla de led con velocidad
+	#imprimeVeloLed.set_text(str(int(velo)))
+	GDglobal.velo = velo
+	
+	#rotación velocimetro
 	auja.set_rotation(velo/150)
 	
-	#modificación de gd original para hub Puntos
-	imprimePuntos.set_text(str(int(puntos)))
-	if banderaPuntos10 == false and (velo) > 30:
-		imprimePuntos.set_text(str(int(puntos)))
-		puntos = puntos + 100
-		banderaPuntos10 = true
 	
 	#gd original 
 	if (Input.is_action_pressed("ui_left")):
