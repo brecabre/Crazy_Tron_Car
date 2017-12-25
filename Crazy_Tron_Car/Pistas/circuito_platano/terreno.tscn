@@ -133,4 +133,6 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
+[connection signal="body_enter" from="meta" to="." method="_on_meta_body_enter"]
+
 

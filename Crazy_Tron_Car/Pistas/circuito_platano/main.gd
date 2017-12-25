@@ -3,12 +3,13 @@ extends Spatial
 
 onready var fantasma_escena = preload("res://fantasma/fantasma.tscn")
 var numero_frame = 0
-var grabar_coche = false
+var grabar_coche = true
 var fantasma_corre = false
 
 
 func _ready():
-	cargar_fantasma()
+	
+
 	set_process_input(true)
 	set_fixed_process(true)
 
@@ -38,7 +39,7 @@ func fantasma_corre():
 
 func grabar_coche():	
 	var coche_nodo = get_node("PosicionSalida/car/BODY")
-	
+	print("eoeoeoe")
 	GLOBAL.posicion_coche_x_0.append(coche_nodo.get_global_transform().basis.x[0])
 	GLOBAL.posicion_coche_x_1.append(coche_nodo.get_global_transform().basis.x[1])
 	GLOBAL.posicion_coche_x_2.append(coche_nodo.get_global_transform().basis.x[2])
@@ -70,6 +71,7 @@ func _input(event):
 func _fixed_process(delta):
 	if grabar_coche:
 		grabar_coche()
+		
 	if fantasma_corre:
 		fantasma_corre()
 
