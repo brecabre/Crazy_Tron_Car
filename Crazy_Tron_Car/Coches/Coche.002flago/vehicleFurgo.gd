@@ -41,7 +41,6 @@ func _fixed_process(delta):
 	auja.set_rotation(velo/150)
 	
 	
-	#gd original 
 	if (Input.is_action_pressed("ui_left")):
 		steer_target = -STEER_LIMIT
 	elif (Input.is_action_pressed("ui_right")):
@@ -51,16 +50,20 @@ func _fixed_process(delta):
 	
 	if (Input.is_action_pressed("ui_up")):
 		set_engine_force(engine_force)
+		
 	else:
 		set_engine_force(0)
 		
+	if (Input.is_action_pressed("ui_down")):
+		set_engine_force(-engine_force)
 #	if (Input.is_action_pressed("ui_down")):
 #		set_engine_force(-engine_force)
 #	else:
 #		set_engine_force(0)
-	
+#	
 	if (Input.is_action_pressed("ui_frenar")):
-		set_brake(1)
+		set_brake(1)	
+	
 	else:
 		set_brake(0.0)
 	
