@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Pistas/circuito_platano/main.gd" type="Script" id=1]
 [ext_resource path="res://Pistas/circuito_platano/imagenes/circuitocarreras.png" type="Texture" id=2]
@@ -48,6 +48,10 @@ plane = Plane( 0, 1, 0, 0 )
 [sub_resource type="BoxShape" id=3]
 
 extents = Vector3( 13.1353, 1, 1.75373 )
+
+[sub_resource type="BoxShape" id=4]
+
+extents = Vector3( 20.8828, 1, 1 )
 
 [node name="terreno" type="Spatial"]
 
@@ -101,12 +105,12 @@ _update_shape_index = 0
 [node name="PosicionSalida" type="Position3D" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5381, 3.99808, -62.8609 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60.6827, 3.99808, -57.72 )
 
 [node name="meta" type="Area" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.165, 1.59192, 0 )
+transform/local = Transform( 1.67586, 0, 0, 0, 1.67586, 0, 0, 0, 1.67586, -56.3405, 2.35203, -56.3016 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
@@ -133,6 +137,82 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
+[node name="Control" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -20.0
+margin/top = 21.0
+margin/right = 301.0
+margin/bottom = 247.0
+
+[node name="Viewport" type="Viewport" parent="Control"]
+
+rect = Rect2( 0, 0, 321, 226 )
+own_world = false
+world = null
+transparent_bg = true
+render_target/enabled = false
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="Camara" type="Camera" parent="Control/Viewport"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 96.4908, 0 )
+projection = 1
+size = 199.948
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = true
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="meta1" type="Area" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92269, 0 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Transform( -0.192036, 0, 0.981388, 0, 1, 0, -0.981388, 0, -0.192036, 0, 0, 80.6279 )
+shapes/0/trigger = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision/layers = 1
+collision/mask = 1
+
+[node name="CollisionShape" type="CollisionShape" parent="meta1"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.192036, 0, 0.981388, 0, 1, 0, -0.981388, 0, -0.192036, 0, 0, 80.6279 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
 [connection signal="body_enter" from="meta" to="." method="_on_meta_body_enter"]
+
+[connection signal="body_enter" from="meta1" to="." method="_on_meta1_body_enter"]
 
 

@@ -5,11 +5,10 @@ onready var fantasma_escena = preload("res://fantasma/fantasma.tscn")
 var numero_frame = 0
 var grabar_coche = true
 var fantasma_corre = false
-
+onready var  meta1 = get_node("meta")
 
 func _ready():
-	
-
+	meta1.hide()
 	set_process_input(true)
 	set_fixed_process(true)
 
@@ -78,6 +77,7 @@ func _fixed_process(delta):
 # area que hace que deje de grabar las posiciones del coche  "meta"
 func _on_meta_body_enter( body ):
  #deja de grabar y sustituye el tiempo del fantasma por el del coche si este es menor 
+	
 	grabar_coche = false
 #	
 	if GLOBAL.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].empty() or GLOBAL.posiciones_coche["posicion_coche_x_0"].size() < GLOBAL.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].size():
@@ -100,9 +100,7 @@ func _on_meta_body_enter( body ):
 		
 		GLOBAL.save_game()
 		print("entro")
-
-
-
-
-
-	
+#
+#
+func _on_meta1_body_enter( body ):
+	meta1.show()
