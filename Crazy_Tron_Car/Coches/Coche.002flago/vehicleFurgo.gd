@@ -26,19 +26,19 @@ var puntos = 0
 func _fixed_process(delta):
 	
 	#modificación de gd original para hub velocidad
-	velo = 5*(get_linear_velocity().length())
-	imprimeVelo.set_text(str(int(velo))+" Km/h")
+	#velo = 5*(get_linear_velocity().length())
+	#imprimeVelo.set_text(str(int(velo))+" Km/h")
 	
 	# parte de pruebas
-	veloRef = (get_linear_velocity().length())
-	imprimeAngu.set_text(str(velo/150)+" grados a 150")
+	#veloRef = (get_linear_velocity().length())
+	#imprimeAngu.set_text(str(velo/150)+" grados a 150")
 	
 	# Pantalla de led con velocidad
 	#imprimeVeloLed.set_text(str(int(velo)))
-	GDglobal.velo = velo
+	#GDglobal.velo = velo
 	
 	#rotación velocimetro
-	auja.set_rotation(velo/150)
+	#auja.set_rotation(velo/150)
 	
 	
 	#gd original 
