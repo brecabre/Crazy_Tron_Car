@@ -33,7 +33,7 @@ func _load_scene(car):
 	if NumeroCircuito == 2:
 		var tt = load(car).instance()
 		tt.set_name("car")
-		town = load("res://Pistas/escenatruckCicloPi.tscn").instance()
+		town = load("res://Pistas/RoscoCampero/terrenoSalidaLuces.tscn").instance()
 		town.get_node("PosicionSalida").add_child(tt)
 		get_parent().add_child(town)
 		town.get_node("PosicionSalida/car/HubFlafo/AlMenu").connect("pressed", self, "_back")
