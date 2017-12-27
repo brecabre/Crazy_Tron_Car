@@ -1,0 +1,130 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://Pistas/RoscoCampero/terrenoSalidaLuces.gd" type="Script" id=1]
+[ext_resource path="res://Pistas/RoscoCampero/roscoCampero.scn" type="PackedScene" id=2]
+[ext_resource path="res://Coches/Coche.002flago/bitPixel.fnt" type="BitmapFont" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+extents = Vector3( 11.0666, 3.38996, 8.51476 )
+
+[node name="truckCicloPi" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 1 )
+
+[node name="PosicionSalida" type="Position3D" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -17.5692, 4.28609, -1.76724 )
+
+[node name="Area" type="Area" parent="PosicionSalida"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.908542, 0, -0.417794, 0, 1, 0, 0.417794, 0, -0.908542, 0, 0, 18.4359 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Transform( 3, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.77478, 0, 0 )
+shapes/0/trigger = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision/layers = 1
+collision/mask = 1
+
+[node name="CollisionShape" type="CollisionShape" parent="PosicionSalida/Area"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 3, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.77478, 0, 0 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="roscoCampero" parent="." instance=ExtResource( 2 )]
+
+transform/local = Transform( -0.999635, 0, -0.0269986, 0, 1, 0, 0.0269986, 0, -0.999635, 0, 0, 0 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0243, 26.5065, 0 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = true
+shadow/darkening = 0.3
+shadow/z_offset = 0.001
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 203.3
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+params/radius = 71.8941
+params/attenuation = 1.0
+
+[node name="OmniLight1" type="OmniLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.36803, 26.5065, 0 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 0.5
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.3
+shadow/z_offset = 0.001
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 203.3
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+params/radius = 71.8941
+params/attenuation = 1.0
+
+[node name="HubTerreno" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="cuentaAtras" type="Label" parent="HubTerreno"]
+
+rect/scale = Vector2( 14, 14 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 486.0
+margin/top = 19.0
+margin/right = 576.0
+margin/bottom = 66.0
+custom_fonts/font = ExtResource( 3 )
+text = "3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="body_enter" from="PosicionSalida/Area" to="." method="_on_Area_body_enter"]
+
+
