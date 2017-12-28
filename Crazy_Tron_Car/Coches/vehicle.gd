@@ -34,6 +34,7 @@ func _fixed_process(delta):
 	else:
 		set_brake(0.0)
 	
+	
 	if (steer_target < steer_angle):
 		steer_angle -= STEER_SPEED*delta
 		if (steer_target > steer_angle):

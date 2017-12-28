@@ -5,10 +5,13 @@ onready var fantasma_escena = preload("res://fantasma/fantasma.tscn")
 var numero_frame = 0
 var grabar_coche = true
 var fantasma_corre = false
-onready var  meta1 = get_node("meta")
+onready var  meta = get_node("meta")
 
 func _ready():
-	meta1.hide()
+	#### escone la meta del coche, esconde la leyermask (.hide no sive) ####
+	meta.set_layer_mask_bit(0,0)
+	
+	
 	set_process_input(true)
 	set_fixed_process(true)
 
@@ -21,8 +24,8 @@ func cargar_fantasma():
 ### hace correr al fantasma recorriendo las listas del diccionario con "numero_frame" ###
 func fantasma_corre():
 	var nodo_fantasma = get_tree().get_root().get_node("fantasma")
-	
-	if GLOBAL.posiciones_fantasma_circuito_1.empty():
+	# cambiar
+	if GLOBAL.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].empty():
 		pass	
 	else:
 		nodo_fantasma.set_global_transform(Transform(
@@ -37,8 +40,9 @@ func fantasma_corre():
 		else: numero_frame +=1
 
 func grabar_coche():	
+	### apendiza a las listas del diccionario la matrix3x4 ####
 	var coche_nodo = get_node("PosicionSalida/car/BODY")
-	print("eoeoeoe")
+#	
 	GLOBAL.posicion_coche_x_0.append(coche_nodo.get_global_transform().basis.x[0])
 	GLOBAL.posicion_coche_x_1.append(coche_nodo.get_global_transform().basis.x[1])
 	GLOBAL.posicion_coche_x_2.append(coche_nodo.get_global_transform().basis.x[2])
@@ -57,7 +61,7 @@ func grabar_coche():
 	
 func _input(event):
 	
-	if (Input.is_action_pressed("aparece_fantasma")):	
+	if (Input.is_action_pressed("aparece_fantasma_j")):	
 		cargar_fantasma()
 		fantasma_corre = true
 	
@@ -99,8 +103,11 @@ func _on_meta_body_enter( body ):
 		GLOBAL.posiciones_fantasma_circuito_1["origen_fantasma_circuito_1_2"] = GLOBAL.origen_coche_2
 		
 		GLOBAL.save_game()
-		print("entro")
+#		print("entro")
 #
 #
 func _on_meta1_body_enter( body ):
-	meta1.show()
+	#### hace vidible  la meta del coche, hace visible la leyermask  ####
+	meta.set_layer_mask_bit(0,1)
+	
+	

@@ -1,9 +1,17 @@
-extends Node
+extends Control
 
-# variables para animación de velocidad
+var preMapa = preload("res://Menus/HubMapa/EcenaCamaraMapa.tscn")
+var mapa
+
+# variables para animación de velocidad en dígitos
 onready var cocheVelo = get_owner().get_node("BODY")
 var veloHub = 1
-onready var imprimeVeloLed = .get_node("Velo150led")
+onready var imprimeVeloLed = get_node("Velo150led")
+
+# variables para animación de velocidad con aguja
+var giroAguja = 0
+onready var aguja = get_node("Panel")
+
 
 # variables para animación de bill
 onready var bill= get_node("bill")
@@ -21,8 +29,11 @@ var tiempoInicio = 0
 var banderaInicioT = false
 var segundosT = 0
 
+# variables para volver menú
+#onready var escenaCarrera = get_owner().get_node("truckCicloPi")
+#onready var escenaCarrera2 = get_owner().get_node("escenatruckCicloPi")
 
-
+# funciones
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -32,6 +43,7 @@ func _ready():
 func _fixed_process(delta):
 	puntikos()
 	velocidad()
+	velocidadGiroAguja()
 	#edicion
 	animabill1()
 	relogiko()
@@ -55,7 +67,11 @@ func relogiko():
 	if banderaInicioT == false :
 		tiempoInicio = OS.get_ticks_msec()
 		banderaInicioT = true 
-	print(((OS.get_ticks_msec()-tiempoInicio)/1000))
+		
+		mapa = preMapa.instance()
+		get_parent().add_child(mapa)
+		
+	#print(((OS.get_ticks_msec()-tiempoInicio)/1000))
 	segundosT = ((OS.get_ticks_msec()-tiempoInicio)/1000)
 	imprimeTiempo.set_text(str(int(segundosT))+" s")
 	pass
@@ -65,3 +81,19 @@ func velocidad():
 	#print(cocheVelo.get_linear_velocity().length())
 	veloHub  = 5*cocheVelo.get_linear_velocity().length()
 	imprimeVeloLed.set_text(str(int(veloHub)))
+
+func velocidadGiroAguja():
+	aguja.set_rotation(veloHub/150)
+	pass
+
+#funciones de boton
+func _on_Button_pressed():
+	var escenaCarrera = get_owner().get_node("truckCicloPi")
+#	print(escenaCarrera)
+	#queue_free()
+#	print("pa a tras")
+	pass # replace with function body
+
+
+func _on_AlMenu_pressed():
+	pass # replace with function body
