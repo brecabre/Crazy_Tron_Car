@@ -24,9 +24,10 @@ func cargar_fantasma():
 ### hace correr al fantasma recorriendo las listas del diccionario con "numero_frame" ###
 func fantasma_corre():
 	var nodo_fantasma = get_tree().get_root().get_node("fantasma")
-	# cambiar
-	if GLOBAL.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].empty():
-		pass	
+#	# cambiar
+#	
+	if GLOBAL.posiciones_fantasma_circuito_1.empty():
+		pass
 	else:
 		nodo_fantasma.set_global_transform(Transform(
 		
