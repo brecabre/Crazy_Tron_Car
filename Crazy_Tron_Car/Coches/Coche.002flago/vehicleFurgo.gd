@@ -34,20 +34,20 @@ func _fixed_process(delta):
 		steer_target = 0
 	
 	if (Input.is_action_pressed("ui_up")):
-		set_engine_force(engine_force)
-		
+		set_engine_force(engine_force)	
+#	else:
+#		set_engine_force(0)
+	
+	elif (Input.is_action_pressed("ui_down")):
+		set_engine_force(-engine_force)
+
 	else:
 		set_engine_force(0)
 		
-	if (Input.is_action_pressed("ui_down")):
-		set_engine_force(-engine_force)
-#	if (Input.is_action_pressed("ui_down")):
-#		set_engine_force(-engine_force)
-#	else:
-#		set_engine_force(0)
-#	
 	if (Input.is_action_pressed("ui_frenar")):
 		set_brake(1)	
+	else: 
+		set_brake(0)
 	
 	
 	if (steer_target < steer_angle):
