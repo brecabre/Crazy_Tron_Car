@@ -19,12 +19,14 @@ func _back():
 	show()
 
 
-func _load_scene(car):
+### funcion con los argumentos car y fantasma
+func _load_scene(car,fantasma):
 	if NumeroCircuito == 1:
 		var tt = load(car).instance()
 		tt.set_name("car")
 		town = load("res://Pistas/escenatruckCicloPi.tscn").instance()
 		town.get_node("PosicionSalida").add_child(tt)
+		
 		get_parent().add_child(town)
 		town.get_node("PosicionSalida/car/HubFlafo/AlMenu").connect("pressed", self, "_back")
 		print("cargo circuito 1")
@@ -39,24 +41,30 @@ func _load_scene(car):
 		town.get_node("PosicionSalida/car/HubFlafo/AlMenu").connect("pressed", self, "_back")
 		print("cargo circuito 2")
 		hide()
+	
 	if NumeroCircuito == 3:
+		GLOBAL.load_game()
 		var tt = load(car).instance()
+		var ff = load(fantasma).instance()
 		tt.set_name("car")
+#		
 		town = load("res://Pistas/circuito_platano/terreno.tscn").instance()
 		town.get_node("PosicionSalida").add_child(tt)
+		town.get_node("PosicionSalida").add_child(ff)
 		get_parent().add_child(town)
 		town.get_node("PosicionSalida/car/HubFlafo/AlMenu").connect("pressed", self, "_back")
-		print("cargo circuito 3")
 		hide()
+
 #funciones de entrada de botón
 func _on_vanCocheClio_pressed():
+	
 	if banderaCircuito:
 		_load_scene("res://Coches/Coche.003clio/clio.scn")
 		pass # replace with function body
 	
 func _on_vanCochePlatano_pressed():
-	if banderaCircuito:
-		_load_scene("res://Coches/coche_platano/coche_platano.scn")
+	if banderaCircuito:	
+		_load_scene(("res://Coches/coche_platano/coche_platano.scn"),("res://Coches/fantasma/fantasma.tscn"))
 	pass # replace with function body
 	
 func _on_van_1_pressed():

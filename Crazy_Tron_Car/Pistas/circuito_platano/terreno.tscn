@@ -109,6 +109,7 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -60.6827, 3.99808, -57.7
 
 [node name="meta" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1.67586, 0, 0, 0, 1.67586, 0, 0, 0, 1.67586, -56.3405, 2.35203, -56.3016 )
 input/ray_pickable = false
