@@ -1,6 +1,6 @@
 extends Control
 
-var preMapa = preload("res://Menus/HubMapa/EcenaCamaraMapa.tscn")
+var preMapa = preload("res://enus/HubMapa/EcenaCamaraMapa.tscn")
 var mapa
 
 # variables para animación de velocidad en dígitos
@@ -89,9 +89,9 @@ func velocidadGiroAguja():
 #funciones de boton
 func _on_Button_pressed():
 	var escenaCarrera = get_owner().get_node("truckCicloPi")
-	print(escenaCarrera)
+#	print(escenaCarrera)
 	#queue_free()
-	print("pa a tras")
+#	print("pa a tras")
 	pass # replace with function body
 
 

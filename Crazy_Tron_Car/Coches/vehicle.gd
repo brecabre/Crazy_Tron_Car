@@ -24,8 +24,8 @@ func _fixed_process(delta):
 	else:
 		set_engine_force(0)
 		
-#	if (Input.is_action_pressed("ui_down")):
-#		set_engine_force(-engine_force)
+	if (Input.is_action_pressed("ui_down")):
+		set_engine_force(-engine_force)
 #	else:
 #		set_engine_force(0)
 	
